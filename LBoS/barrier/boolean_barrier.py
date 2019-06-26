@@ -34,11 +34,13 @@ def barrier_wrapper(barrier_type='count'):
         sys.stdout.write(f"\n\tThis is thread {thread_name} just before the block")
 
         if thread_count == NUM_THREADS:
-            for x in range(NUM_THREADS):
-                sys.stdout.write(f"[RELEASE]Thread {thread_name} is about to try to release for the {x} time\n")
-                barrier.release()
+            #for x in range(NUM_THREADS):
+            #    sys.stdout.write(f"[RELEASE]Thread {thread_name} is about to try to release for the {x} time\n")
+            #    barrier.release()
+            barrier.release()
 
         barrier.acquire()
+        barrier.release()
         sys.stdout.write(f"\n\t\tThis is thread {thread_name} past the block!\n")
 
     def boolean_barrier_proc():
@@ -55,11 +57,13 @@ def barrier_wrapper(barrier_type='count'):
         
         if boolean_thread_completion == boolean_mask:
             sys.stdout.write(f"\n\t\tThread {thread_name} is the one to release the barrier!\n")
-            for x in range(NUM_THREADS):
-                sys.stdout.write(f"[RELEASE]Thread {thread_name} is about to try to release for the {x} time\n")
-                barrier.release()
-        
+            #for x in range(NUM_THREADS):
+            #    sys.stdout.write(f"[RELEASE]Thread {thread_name} is about to try to release for the {x} time\n")
+            #    barrier.release()
+            barrier.release()
+
         barrier.acquire()
+        barrier.release()
         sys.stdout.write(f"\n\t\tThis is thread {thread_name} past the block!\n")
 
     def flip(bitarray, b):
