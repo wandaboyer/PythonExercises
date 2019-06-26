@@ -1,0 +1,49 @@
+(venv) van-wboye01-mac:PythonExercises wboyer$ python boolean_barrier.py 
+
+Before Spawning Threads
+
+	This is thread 0 just before the block
+	This is thread 1 just before the block
+	This is thread 2 just before the block
+	This is thread 3 just before the block
+	This is thread 4 just before the block
+	This is thread 5 just before the block
+	This is thread 6 just before the block
+	This is thread 7 just before the block
+	This is thread 8 just before the block
+	This is thread 9 just before the block
+Done spawning Threads
+
+		This is thread 9 past the block!
+
+		This is thread 1 past the block!
+
+		This is thread 3 past the block!
+
+	Thread 0 is joining
+		This is thread 4 past the block!
+
+		This is thread 7 past the block!
+
+		This is thread 2 past the block!
+
+		This is thread 0 past the block!
+
+		This is thread 6 past the block!
+
+		This is thread 8 past the block!
+
+	Thread 1 is joining
+		This is thread 5 past the block!
+
+	Thread 2 is joining
+	Thread 3 is joining
+	Thread 4 is joining
+	Thread 5 is joining
+	Thread 6 is joining
+	Thread 7 is joining
+	Thread 8 is joining
+	Thread 9 is joining
+Done joining threads.
+Total time: 0.002346038818359375
+
