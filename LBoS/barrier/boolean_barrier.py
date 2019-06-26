@@ -8,7 +8,7 @@ NUM_THREADS = 10
 
 mutex = threading.BoundedSemaphore(1)
 #barrier = threading.Semaphore(0)
-barrier = threading.BoundedSemaphore()  # ThreadingException
+barrier = threading.BoundedSemaphore(1)  # "released too many times" if initialized to 0
 
 thread_count = 0
 
@@ -34,7 +34,7 @@ def barrier_wrapper(barrier_type='count'):
         sys.stdout.write(f"\n\tThis is thread {thread_name} just before the block")
 
         if thread_count == NUM_THREADS:
-            for x in range(NUM_THREADS - 1):
+            for x in range(NUM_THREADS):
                 sys.stdout.write(f"[RELEASE]Thread {thread_name} is about to try to release for the {x} time\n")
                 barrier.release()
 
@@ -55,7 +55,7 @@ def barrier_wrapper(barrier_type='count'):
         
         if boolean_thread_completion == boolean_mask:
             sys.stdout.write(f"\n\t\tThread {thread_name} is the one to release the barrier!\n")
-            for x in range(NUM_THREADS - 1):
+            for x in range(NUM_THREADS):
                 sys.stdout.write(f"[RELEASE]Thread {thread_name} is about to try to release for the {x} time\n")
                 barrier.release()
         
@@ -83,6 +83,10 @@ def barrier_wrapper(barrier_type='count'):
         thread_method = locals()[f"{barrier_type}_barrier_proc"]
     except KeyError as e:
         raise KeyError(f"Don't have a barrier type {barrier_type} to fetch method for; {e}")
+
+    # Since BoundedSemaphore can never exceed it's initial value, we need to 
+    # initially set it to 1 and then block it before spawning all the processes
+    barrier.acquire()
 
     for i in range(NUM_THREADS):
         thread = threading.Thread(name=f'{i}', target=thread_method)
