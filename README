@@ -1,3 +1,6 @@
-# Python Experiments
+~Python Exercises~
 
-This project includes various scripts which demonstrate various concepts or capture some of the less-well-known (or perhaps only previously unknown by yours truly!) language features of Python.
+This is a repo for some small programs in Python. I will update this README as time goes on to detail the contents of the repo.
+
+1. simpleObject.py - learning how to define classes in Python, seeing how arguments are passed, how to access class variables and the like (SELF ALL THE THINGS!)
+1. barrier.py - going through the Little Book of Semaphores
